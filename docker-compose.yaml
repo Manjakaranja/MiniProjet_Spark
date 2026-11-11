@@ -1,0 +1,8 @@
+services:
+  pyspark:
+    image: quay.io/jupyter/pyspark-notebook:latest
+    container_name: mini-projet-spark
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./work:/home/jovyan/work
