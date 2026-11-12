@@ -4,6 +4,6 @@ Ce dossier contient les résultats générés par le pipeline ETL PySpark (étap
 
 Les données correspondent au **chiffre d'affaires total par magasin**, calculé à partir du fichier `purchases.txt`.
 
-Les résultats sont enregistrés au **format Parquet** dans le sous-dossier `ventes_par_magasin/`.
+Les résultats sont enregistrés au **format Parquet** dans le sous-dossier `vente_par_magasin/`.
 
 **Note :** les fichiers Parquet sont générés automatiquement lors de l'exécution du notebook et ne sont pas versionnés sur GitHub.
