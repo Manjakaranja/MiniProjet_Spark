@@ -34,32 +34,44 @@ MiniProjet_Spark/
 
 ## Installation et lancement
 
-**Prérequis :** Docker et Docker Compose.
+**Prérequis :** Docker, Docker Compose et Git.
 
-1. Cloner le dépôt :
+### 1. Cloner le dépôt
 
 ```bash
 git clone <URL_DU_REPO>
 cd MiniProjet_Spark
 ```
 
-2. Démarrer l'environnement :
+### 2. Préparer les données
+
+Placer le fichier `purchases.txt` fourni par le professeur dans le dossier `work/`.
+
+Ce fichier n'est pas versionné sur GitHub.
+
+### 3. Démarrer l'environnement Docker
 
 ```bash
 docker compose up -d
 ```
 
-3. Récupérer le lien Jupyter :
+### 4. Récupérer le lien Jupyter
 
 ```bash
 docker compose logs pyspark
 ```
 
-4. Ouvrir Jupyter à l'adresse `http://localhost:8888` avec le token indiqué dans les logs.
+Ouvrir l'adresse `http://localhost:8888` avec le token indiqué dans les logs.
 
-5. Accéder au dossier `work` et ouvrir `MiniProjet_Spark.ipynb`.
+### 5. Accéder aux notebooks
 
-Pour arrêter l'environnement :
+Dans Jupyter, ouvrir le dossier `work/`, puis :
+
+- `notebooks/partie_dataframe.ipynb` : développement DataFrame et SQL.
+- `notebooks/partie_rdd.ipynb` : développement RDD et ETL.
+- `MiniProjet_Spark.ipynb` : notebook final.
+
+### 6. Arrêter Docker
 
 ```bash
 docker compose down
@@ -82,14 +94,13 @@ Ce volume permet de partager directement les fichiers entre le dossier local du 
 | `work/notebooks/` | `/home/jovyan/work/notebooks/` |
 | `work/output/` | `/home/jovyan/work/output/` |
 
-**Récapitulatif fonctionnement :**
+**Fonctionnement :**
 
 1. Démarrer Docker avec `docker compose up -d`.
-2. Récupérer le lien Jupyter : `docker compose logs pyspark` 
-3. Accéder à Jupyter sur `localhost:8888`.
-4. Ouvrir son notebook dans `work/notebooks/`.
-5. Développer et exécuter le code PySpark.
-6. Sauvegarder le notebook avec `Cmd + S` (Mac) ou `Ctrl + S` (Windows/Linux).
+2. Accéder à Jupyter sur `localhost:8888`.
+3. Ouvrir son notebook dans `work/notebooks/`.
+4. Développer et exécuter le code PySpark.
+5. Sauvegarder le notebook avec `Cmd + S` (Mac) ou `Ctrl + S` (Windows/Linux).
 
 Grâce au volume Docker, les modifications enregistrées dans Jupyter sont directement visibles dans le dossier local du projet.
 
@@ -120,22 +131,39 @@ git push
 
 Le développement s'effectue sur un dépôt GitHub commun avec deux branches :
 
-- `feature/dataframe-sql` : étapes 2, 4 et 5
-- `feature/rdd-etl` : étapes 3 et 6
+- `feature/dataframe-sql` : étapes 2, 4 et 5.
+- `feature/rdd-etl` : étapes 3 et 6.
 
 L'étape 1, la revue du code, les tests et l'intégration finale sont réalisés ensemble.
 
-Chaque membre développe sur sa branche, puis propose une **Pull Request** vers `main`.
+### Workflow Git
 
-Les notebooks intermédiaires sont ensuite réunis dans `MiniProjet_Spark.ipynb`.
+Chaque membre développe sur sa branche :
+
+```bash
+git switch feature/dataframe-sql
+```
+
+Après les modifications :
+
+```bash
+git add .
+git commit -m "Complete Spark analysis"
+git push
+```
+
+Une **Pull Request** est ensuite créée vers `main` pour intégrer le travail.
+
+Les notebooks intermédiaires sont réunis dans `MiniProjet_Spark.ipynb`.
 
 ## Tests et livraison
 
 Avant la livraison :
 
-- Exécuter toutes les cellules du notebook dans l'ordre.
+- Exécuter toutes les cellules du notebook dans l'ordre (*Restart Kernel & Run All*).
 - Vérifier les résultats des traitements Spark.
 - Vérifier la génération et la relecture des fichiers Parquet.
 - Tester la réexécution complète du notebook.
+- Vérifier que le notebook fonctionne sur les deux ordinateurs.
 
 **Livrable final :** `MiniProjet_Spark.ipynb`, à déposer sur Teams.
